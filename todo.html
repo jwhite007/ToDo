@@ -1,0 +1,54 @@
+<html>
+<body>
+<p><b>THIS IS MY TO-DO LIST</b></p>
+
+<p>Add a To-Do:&nbsp;&nbsp;<input id="InputText" type="text" onkeypress="{if (event.keyCode==13)Add()}" size="50" maxlength="100"/><input type="submit" onclick="Add()"></p>
+
+<table id="table1">
+<tbody>
+    <tr><th>ToDo</th><th>Completed</th><th></th></tr>
+</tbody>
+</table>
+
+<script type="text/javascript">
+
+    function ClearFields(o) {
+        var p=o.parentNode.parentNode;
+        p.parentNode.removeChild(p);
+    }
+
+
+    function Add() {
+        tabBody=document.getElementsByTagName("TBODY")[0];
+        var row=document.createElement("tr");
+        var cell1=document.createElement("td");
+        var cell2=document.createElement("td");
+        var cell3=document.createElement("td");
+        var button=document.createElement("button");
+        button.setAttribute("type", "button");
+        button.setAttribute("onclick", "ClearFields(this)");
+        button.setAttribute("value", "delete");
+        button.innerHTML="Clear";
+        var input=document.getElementById("InputText");
+        var text=input.value;
+        var node1=document.createTextNode(text);
+        var checkbox = document.createElement("input");
+        checkbox.setAttribute("type", "checkbox");
+        checkbox.setAttribute("name", "dd");
+        checkbox.setAttribute("value", "ff");
+        checkbox.checked = false;
+        cell1.appendChild(node1);
+        cell2.appendChild(checkbox);
+        cell3.appendChild(button);
+        row.appendChild(cell1);
+        row.appendChild(cell2);
+        row.appendChild(cell3);
+        headrow=document.getElementsByTagName('tr')[1];
+        tabBody.insertBefore(row, headrow);
+        document.getElementById("InputText").value="";
+    }
+</script>
+
+
+</body>
+</html>
